@@ -1,3 +1,5 @@
+Fork from [https://github.com/asanakoy/kaggle_carvana_segmentation](https://github.com/asanakoy/kaggle_carvana_segmentation)
+<br>
 # Kaggle Carvana Image Masking Challenge
 Code for the 1st place solution in [Carvana Image Masking Challenge on car segmentaion](https://www.kaggle.com/c/carvana-image-masking-challenge/leaderboard).
 
@@ -14,9 +16,9 @@ Blogpost explaining the solution: http://blog.kaggle.com/2017/12/22/carvana-imag
 # Requirements
 To train final models you will need the following:
 
-- OS: Ubuntu 16.04 
-- Required hardware: 
-    - Any decent modern computer with x86-64 CPU, 
+- OS: Ubuntu 16.04
+- Required hardware:
+    - Any decent modern computer with x86-64 CPU,
     - 32 GB RAM
     - Powerful GPU: Nvidia Titan X (12Gb VRAM) or Nvidia GeForce GTX 1080 Ti. The more the better.
 
@@ -32,17 +34,17 @@ To train final models you will need the following:
 - `input_data_dir`: path to the folder with input images (`train_hq`, `test_hq`), masks (`train_masks`) and `sample_submission.csv`
 - `submissions_dir`: path to the folder which will be used to store predicted probability maps and submission files
 - `models_dir`: path to the dir which will be used to store model snapshots. You should put downloaded model weights in this folder.
-    
+
 # Train all and predict all
-If you want to train all the models and generate predicts:   
+If you want to train all the models and generate predicts:
 - Run `bash train_and_predict.sh`
 
 # Train models
-We have several separate neural networks in our solution which we then combine in a final ensemble.   
+We have several separate neural networks in our solution which we then combine in a final ensemble.
 To train all the necessary networks:
 - Run `bash train.sh`
 
-After training finishes trained weights are saved in `model_dir` directory and can be used by prediction scripts. 
+After training finishes trained weights are saved in `model_dir` directory and can be used by prediction scripts.
 Or you can directly use downloaded weights and skip the training procedure.
 
 **Required time:** *It may require quite a long time depending on hardware used. Takes about 30-60 min per epoch depending on the network on a single Titan X Pascal GPU. Total time needed is about 2140 hours, which is ~90 days on a single Titan X Pascal. The required time can be reduced if you use more GPUs in parallel.*
@@ -53,12 +55,12 @@ Or you can directly use downloaded weights and skip the training procedure.
 
 It may take considerable amount of time to generate all predictions as there are a lot of data in test and we need to generate prediction for every single model and then average them. Some of the models use test time augmentation for the best model performance. Each single model takes about 5 hours to predict on all test images on a single Titan X GPU.
 
-When all predictions are done they will be merged in a single file for submit.  
+When all predictions are done they will be merged in a single file for submit.
 File `ens_scratch2(1)_v1-final(1)_al27(1)_te27(1).csv.gz` that contains final predicted masks for all tst images will be saved in `submisions_dir`.
 
 **Required time:** *It may require quite a long time depending on hardware used. Takes from 4 to 8 hours per model to generate predictions on a single Titan X Pascal GPU. Total time needed is about 320 hours, which is ~13 days on a single Titan X Pascal. The required time can be reduced if you use more GPUs in parallel.*
 
 # Remarks
-Please, keep in mind that this isn't a production ready code but a very specific solution for the particular competition created in short time frame and with a lot of other constrains (limited training data, scarce computing resources and a small number of attents to check for improvements). 
+Please, keep in mind that this isn't a production ready code but a very specific solution for the particular competition created in short time frame and with a lot of other constrains (limited training data, scarce computing resources and a small number of attents to check for improvements).
 
 Also, inherent stochasticity of neural networks training on many different levels (random initialization of weights, random augmentations and so on) makes it impossible to reproduce exact submission from scratch.
