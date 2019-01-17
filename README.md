@@ -3,7 +3,7 @@ LightGBM/lightgbm config=lightgbm.conf data=../data/higgs.train valid=../data/hi
 
 > `2>&1` 的意思就是将标准错误重定向到标准输出<br>
 > `tee` 把输出保存到文件中，又在屏幕上看到输出内容
-
+[https://github.com/guolinke/boosting_tree_benchmarks/blob/master/lightgbm/test_accuracy.sh](https://github.com/guolinke/boosting_tree_benchmarks/blob/master/lightgbm/test_accuracy.sh)
 
 - `$PWD` depend on where you run the program rather than where the program is;
     `mkdir` ... is relative to current working directory.
