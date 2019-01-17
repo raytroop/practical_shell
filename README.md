@@ -1,3 +1,10 @@
+- **2>&1** and **tee**
+LightGBM/lightgbm config=lightgbm.conf data=../data/higgs.train valid=../data/higgs.test objective=binary metric=auc **2>&1 | tee** lightgbm_higgs_accuracy.log
+
+> `2>&1` 的意思就是将标准错误重定向到标准输出
+> `tee` 把输出保存到文件中，又在屏幕上看到输出内容
+
+
 - `$PWD` depend on where you run the program rather than where the program is;
     `mkdir` ... is relative to current working directory.
 ```bash
