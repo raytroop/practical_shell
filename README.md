@@ -57,6 +57,34 @@ fi
 ```
 <br>
 
+- 向bash启动的python脚本传递参数
+```bash
+#! /bin/bash
+
+python -c "import sys; print([sys.argv[i] for i in range(len(sys.argv))])" $@
+echo "------------------------------"
+python main.py $@
+```
+```python
+# main.py
+   import sys
+   
+   for arg in sys.argv:
+       print(arg)
+```
+运行bash script的输出：
+```
+['-c', '1', '2', '3']
+------------------------------
+main.py
+1
+2
+3
+
+```
+**NOTE:* 注意上述差异
+
+
 - [shell中各种括号()、(())、[]、[[]]、{}的作用](https://www.cnblogs.com/nkwy2012/p/9171414.html)
   - 字符串比较用双中括号`[[ ]]`
   - 算数比较用单中括号`[ ]`——**左右留空格**
